@@ -8,10 +8,11 @@ var engine,world;
 var paper,dustbinImage;
 var ground;
 var dustbin1;
+var dustbinA;
 
 function preload()
 {
-	dustbinImage=loadImage("sprites/dustbingreen.png")
+	dustbinImage=loadImage("dustbingreen.png")
 }
 
 function setup() {
@@ -23,6 +24,17 @@ function setup() {
  groundSprite.shapeColor=color(255)	
  ground = Bodies.rectangle(width/2,380,width,30,{isStatic:true});
  World.add(world,ground);
+
+ dustbin1=createSprite(1058,290,10,150)
+ dustbin1.shapeColor=color("red")
+ dustbin1=Bodies.rectangle(1058,290,10,150,{isStatic:true})
+ World.add(world,dustbin1)
+
+
+ dustbin2=createSprite(942,290,10,150)
+ dustbin2.shapeColor=color("red")
+ dustbin2=Bodies.rectangle(942,290,10,150,{isStatic:true})
+ World.add(world,dustbin2)
 
 dustbin=createSprite(1000,290)
 dustbin.addImage("dustbin",dustbinImage);
@@ -42,7 +54,7 @@ function draw() {
 Engine.update(engine)
 
 paper.display();
-
+//dustbin1.display()
 dustbin.display();
   drawSprites();
 
@@ -51,14 +63,16 @@ dustbin.display();
 }
 
 
-function KeyPressed(){
-	if(keyCode===DOWN_ARROW ){
-	 Matter.Body.setPosition(paper.body,{x: 1050 , y: 255}); 
-	}
-  }
+//function KeyPressed(){
+//	if(keyCode===DOWN_ARROW ){
+//	 Matter.Body.setPosition(paper.body,{x: 1050 , y: 255}); 
+	//}
+  //}
   
 function keyPressed(){
-	if(keyCode===UP_ARROW){
-		Matter.Body.setPosition(paper.body,{x:1030,y:200})
+	//if(keyCode===UP_ARROW)
+	if(keyCode===32)
+	{
+		Matter.Body.applyForce(paper.body,paper.body.position,{x:38,y:-20})
 	}
 }
